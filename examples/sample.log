@@ -1,0 +1,81 @@
+2026-09-17T12:00:00 INFO request handled id=2824 path=/api/jobs status=200
+2026-09-17T12:00:03 INFO request handled id=1409 path=/api/jobs status=200
+2026-09-17T12:00:06 INFO request handled id=5506 path=/api/jobs status=200
+2026-09-17T12:00:09 INFO request handled id=5012 path=/api/jobs status=200
+2026-09-17T12:00:12 INFO request handled id=4657 path=/api/jobs status=200
+2026-09-17T12:00:15 INFO request handled id=3286 path=/api/jobs status=200
+2026-09-17T12:00:18 INFO request handled id=2679 path=/api/jobs status=200
+2026-09-17T12:00:21 INFO request handled id=9935 path=/api/jobs status=200
+2026-09-17T12:00:24 INFO request handled id=2424 path=/api/jobs status=200
+2026-09-17T12:00:27 INFO request handled id=7912 path=/api/jobs status=200
+2026-09-17T12:00:30 INFO request handled id=1520 path=/api/jobs status=200
+2026-09-17T12:00:33 INFO request handled id=1488 path=/api/jobs status=200
+2026-09-17T12:00:36 INFO request handled id=2535 path=/api/jobs status=200
+2026-09-17T12:00:39 INFO request handled id=4582 path=/api/jobs status=200
+2026-09-17T12:00:42 INFO request handled id=4811 path=/api/jobs status=200
+2026-09-17T12:00:45 INFO request handled id=9279 path=/api/jobs status=200
+2026-09-17T12:00:47 WARN slow query took 313ms id=575
+2026-09-17T12:00:48 INFO request handled id=4257 path=/api/jobs status=200
+2026-09-17T12:00:51 INFO request handled id=9928 path=/api/jobs status=200
+2026-09-17T12:00:54 INFO request handled id=7873 path=/api/jobs status=200
+2026-09-17T12:00:57 INFO request handled id=4611 path=/api/jobs status=200
+2026-09-17T12:01:00 INFO request handled id=8359 path=/api/jobs status=200
+2026-09-17T12:01:01 ERROR timeout contacting upstream service id=604
+2026-09-17T12:01:03 INFO request handled id=5557 path=/api/jobs status=200
+2026-09-17T12:01:06 INFO request handled id=1106 path=/api/jobs status=200
+2026-09-17T12:01:09 INFO request handled id=3615 path=/api/jobs status=200
+2026-09-17T12:01:12 INFO request handled id=7924 path=/api/jobs status=200
+2026-09-17T12:01:15 INFO request handled id=6574 path=/api/jobs status=200
+2026-09-17T12:01:18 INFO request handled id=5552 path=/api/jobs status=200
+2026-09-17T12:01:21 INFO request handled id=3547 path=/api/jobs status=200
+2026-09-17T12:01:24 INFO request handled id=4527 path=/api/jobs status=200
+2026-09-17T12:01:27 INFO request handled id=6514 path=/api/jobs status=200
+2026-09-17T12:01:30 INFO request handled id=2674 path=/api/jobs status=200
+2026-09-17T12:01:30 ERROR ConnectionResetError: [Errno 104] Connection reset by peer id=624
+2026-09-17T12:01:31 ERROR ConnectionResetError: [Errno 104] Connection reset by peer id=651
+2026-09-17T12:01:32 ERROR ConnectionResetError: [Errno 104] Connection reset by peer id=176
+2026-09-17T12:01:33 INFO request handled id=2519 path=/api/jobs status=200
+2026-09-17T12:01:33 ERROR ConnectionResetError: [Errno 104] Connection reset by peer id=547
+2026-09-17T12:01:34 WARN slow query took 494ms id=100
+2026-09-17T12:01:34 ERROR ConnectionResetError: [Errno 104] Connection reset by peer id=747
+2026-09-17T12:01:35 ERROR ConnectionResetError: [Errno 104] Connection reset by peer id=251
+2026-09-17T12:01:36 INFO request handled id=6881 path=/api/jobs status=200
+2026-09-17T12:01:36 ERROR ConnectionResetError: [Errno 104] Connection reset by peer id=168
+2026-09-17T12:01:37 ERROR ConnectionResetError: [Errno 104] Connection reset by peer id=474
+2026-09-17T12:01:38 ERROR ConnectionResetError: [Errno 104] Connection reset by peer id=389
+2026-09-17T12:01:39 INFO request handled id=6635 path=/api/jobs status=200
+2026-09-17T12:01:39 ERROR ConnectionResetError: [Errno 104] Connection reset by peer id=277
+2026-09-17T12:01:40 ERROR ConnectionResetError: [Errno 104] Connection reset by peer id=948
+2026-09-17T12:01:41 ERROR ConnectionResetError: [Errno 104] Connection reset by peer id=656
+2026-09-17T12:01:42 INFO request handled id=5333 path=/api/jobs status=200
+2026-09-17T12:01:42 ERROR ConnectionResetError: [Errno 104] Connection reset by peer id=705
+2026-09-17T12:01:43 ERROR ConnectionResetError: [Errno 104] Connection reset by peer id=571
+2026-09-17T12:01:44 ERROR ConnectionResetError: [Errno 104] Connection reset by peer id=225
+2026-09-17T12:01:45 INFO request handled id=1711 path=/api/jobs status=200
+2026-09-17T12:01:45 ERROR ConnectionResetError: [Errno 104] Connection reset by peer id=702
+2026-09-17T12:01:48 INFO request handled id=8527 path=/api/jobs status=200
+2026-09-17T12:01:51 INFO request handled id=9785 path=/api/jobs status=200
+2026-09-17T12:01:54 INFO request handled id=3045 path=/api/jobs status=200
+2026-09-17T12:01:57 INFO request handled id=7201 path=/api/jobs status=200
+2026-09-17T12:02:00 INFO request handled id=2291 path=/api/jobs status=200
+2026-09-17T12:02:02 ERROR timeout contacting upstream service id=566
+2026-09-17T12:02:03 INFO request handled id=5803 path=/api/jobs status=200
+2026-09-17T12:02:06 INFO request handled id=6925 path=/api/jobs status=200
+2026-09-17T12:02:09 INFO request handled id=4150 path=/api/jobs status=200
+2026-09-17T12:02:12 INFO request handled id=2139 path=/api/jobs status=200
+2026-09-17T12:02:15 INFO request handled id=1750 path=/api/jobs status=200
+2026-09-17T12:02:18 INFO request handled id=4733 path=/api/jobs status=200
+2026-09-17T12:02:21 INFO request handled id=5741 path=/api/jobs status=200
+2026-09-17T12:02:21 WARN slow query took 340ms id=876
+2026-09-17T12:02:24 INFO request handled id=4814 path=/api/jobs status=200
+2026-09-17T12:02:27 INFO request handled id=2654 path=/api/jobs status=200
+2026-09-17T12:02:30 INFO request handled id=7227 path=/api/jobs status=200
+2026-09-17T12:02:33 INFO request handled id=5554 path=/api/jobs status=200
+2026-09-17T12:02:36 INFO request handled id=8428 path=/api/jobs status=200
+2026-09-17T12:02:39 INFO request handled id=6977 path=/api/jobs status=200
+2026-09-17T12:02:42 INFO request handled id=3664 path=/api/jobs status=200
+2026-09-17T12:02:45 INFO request handled id=7065 path=/api/jobs status=200
+2026-09-17T12:02:48 INFO request handled id=6820 path=/api/jobs status=200
+2026-09-17T12:02:51 INFO request handled id=4432 path=/api/jobs status=200
+2026-09-17T12:02:54 INFO request handled id=5374 path=/api/jobs status=200
+2026-09-17T12:02:57 INFO request handled id=2169 path=/api/jobs status=200

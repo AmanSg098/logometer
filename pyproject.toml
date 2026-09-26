@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "logometer"
+version = "0.1.0"
+description = "Tail your logs. Catch anomalies. Skip the 2am grep."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+dependencies = []  # zero dependencies by design — see ARCHITECTURE.md
+
+[project.optional-dependencies]
+pretty = ["rich>=13"]  # optional: nicer styled terminal output. --explain needs no extra install (raw HTTP call).
+
+[project.scripts]
+logometer = "logometer.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["logometer*"]

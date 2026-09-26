@@ -1,0 +1,32 @@
+# Internal planning doc
+ARCHITECTURE.md
+
+# Python bytecode
+__pycache__/
+*.py[cod]
+
+# Packaging / build output
+*.egg-info/
+build/
+dist/
+
+# Virtual environments
+.venv/
+venv/
+
+# Test / tooling caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Secrets (API keys for --explain)
+.env
+
+# OS / editor junk
+.DS_Store
+__MACOSX/
+._*
+.idea/
+.vscode/
