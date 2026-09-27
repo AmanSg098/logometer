@@ -3,6 +3,9 @@ Optional "--explain" support: sends an anomalous window's lines to an
 LLM and asks for a one-sentence plain-English summary of the likely
 cause.
 
+Providers: Anthropic, OpenAI, and OpenRouter (OpenAI-compatible, gives
+access to many vendors' models with one key).
+
 Deliberately built on stdlib `urllib` rather than the `anthropic` or
 `openai` SDKs, so `--explain` needs nothing beyond an API key — no
 extra pip install, no risk of drifting out of sync with an SDK's API
@@ -27,6 +30,11 @@ _ANTHROPIC_MODEL = "claude-haiku-4-5-20251001"  # fast + cheap, all we need for 
 
 _OPENAI_URL = "https://api.openai.com/v1/chat/completions"
 _OPENAI_MODEL = "gpt-4o-mini"
+
+# OpenRouter speaks the OpenAI chat-completions format, so it shares
+# that code path; model ids are namespaced, e.g. "openai/gpt-4o-mini".
+_OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
+_OPENROUTER_MODEL = "anthropic/claude-haiku-4.5"
 
 _TIMEOUT_SECONDS = 15
 _MAX_LINES_SENT = 30  # cap what we send: a window shouldn't need more context than this to explain
@@ -99,12 +107,14 @@ def _call_anthropic(lines: list[str], model: str) -> str:
     return text
 
 
-def _call_openai(lines: list[str], model: str) -> str:
-    api_key = os.environ.get("OPENAI_API_KEY")
+def _call_openai_compatible(
+    lines: list[str], model: str, *, url: str, key_env: str, provider: str, label: str
+) -> str:
+    api_key = os.environ.get(key_env)
     if not api_key:
         raise ExplainError(
-            "OPENAI_API_KEY is not set. Set it to enable --explain with --explain-provider openai, "
-            "e.g. export OPENAI_API_KEY=your-key-here"
+            f"{key_env} is not set. Set it to enable --explain with --explain-provider {provider}, "
+            f"e.g. export {key_env}=your-key-here"
         )
 
     body = json.dumps({
@@ -117,7 +127,7 @@ def _call_openai(lines: list[str], model: str) -> str:
     }).encode("utf-8")
 
     request = urllib.request.Request(
-        _OPENAI_URL,
+        url,
         data=body,
         method="POST",
         headers={
@@ -130,25 +140,38 @@ def _call_openai(lines: list[str], model: str) -> str:
             payload = json.loads(response.read().decode("utf-8"))
     except urllib.error.HTTPError as e:
         detail = e.read().decode("utf-8", errors="replace")[:300]
-        raise ExplainError(f"OpenAI API returned {e.code}: {detail}") from e
+        raise ExplainError(f"{label} API returned {e.code}: {detail}") from e
     except urllib.error.URLError as e:
-        raise ExplainError(f"could not reach OpenAI API: {e.reason}") from e
+        raise ExplainError(f"could not reach {label} API: {e.reason}") from e
     except TimeoutError as e:
-        raise ExplainError("OpenAI API request timed out") from e
+        raise ExplainError(f"{label} API request timed out") from e
 
     try:
         text = payload["choices"][0]["message"]["content"].strip()
-    except (KeyError, IndexError, TypeError) as e:
-        raise ExplainError(f"unexpected response shape from OpenAI API: {payload!r}") from e
+    except (KeyError, IndexError, TypeError, AttributeError) as e:
+        raise ExplainError(f"unexpected response shape from {label} API: {payload!r}") from e
 
     if not text:
-        raise ExplainError("OpenAI API returned an empty explanation")
+        raise ExplainError(f"{label} API returned an empty explanation")
     return text
+
+
+def _call_openai(lines: list[str], model: str) -> str:
+    return _call_openai_compatible(
+        lines, model, url=_OPENAI_URL, key_env="OPENAI_API_KEY", provider="openai", label="OpenAI"
+    )
+
+
+def _call_openrouter(lines: list[str], model: str) -> str:
+    return _call_openai_compatible(
+        lines, model, url=_OPENROUTER_URL, key_env="OPENROUTER_API_KEY", provider="openrouter", label="OpenRouter"
+    )
 
 
 _PROVIDERS = {
     "anthropic": (_call_anthropic, _ANTHROPIC_MODEL),
     "openai": (_call_openai, _OPENAI_MODEL),
+    "openrouter": (_call_openrouter, _OPENROUTER_MODEL),
 }
 
 

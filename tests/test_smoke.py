@@ -51,6 +51,10 @@ class TestClassifier(unittest.TestCase):
         b = fingerprint("slow query took 907ms id=99")
         self.assertEqual(a, b)
 
+    def test_fingerprint_strips_python_logging_timestamp(self):
+        shape = fingerprint("2026-09-26 23:44:18,259 ERROR search parse failed")
+        self.assertEqual(shape, "<x> ERROR search parse failed")
+
     def test_fingerprint_distinguishes_different_messages(self):
         a = fingerprint("timeout contacting upstream service")
         b = fingerprint("ConnectionResetError: connection reset by peer")

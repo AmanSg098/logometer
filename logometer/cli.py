@@ -223,7 +223,7 @@ def run_tail(
     explain_warned = False  # only print an --explain setup problem once, not per-anomaly
 
     console = None
-    if use_rich and output_format == "plain" and HAS_RICH:
+    if use_rich and output_format == "plain" and HAS_RICH and _supports_color(out):
         from rich.console import Console
         console = Console(file=out)
 
@@ -354,11 +354,11 @@ def build_parser() -> argparse.ArgumentParser:
         "--explain",
         action="store_true",
         help="Ask an LLM for a one-sentence explanation of each anomaly "
-             "(requires ANTHROPIC_API_KEY or OPENAI_API_KEY; fails soft if unset)",
+             "(requires ANTHROPIC_API_KEY, OPENAI_API_KEY or OPENROUTER_API_KEY; fails soft if unset)",
     )
     tail_parser.add_argument(
         "--explain-provider",
-        choices=["anthropic", "openai"],
+        choices=["anthropic", "openai", "openrouter"],
         default="anthropic",
         help="Which API to use for --explain (default: anthropic)",
     )

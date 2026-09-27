@@ -28,7 +28,7 @@ _LEVEL_PATTERNS = [
 _FINGERPRINT_STRIPS = [
     re.compile(r"\b[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}\b"),  # UUID
     re.compile(r"\b0x[0-9a-fA-F]+\b"),  # hex addresses
-    re.compile(r"\b\d{4}-\d{2}-\d{2}[T ]\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+-]\d{2}:?\d{2})?\b"),  # ISO timestamp
+    re.compile(r"\b\d{4}-\d{2}-\d{2}[T ]\d{2}:\d{2}:\d{2}(?:[.,]\d+)?(?:Z|[+-]\d{2}:?\d{2})?\b"),  # ISO timestamp (Python logging uses a comma before millis)
     re.compile(r'"[^"]*"'),  # quoted strings
     re.compile(r"'[^']*'"),  # single-quoted strings
     re.compile(r"\d+"),  # numbers, including ones glued to units/words (e.g. "313ms", "Errno104")

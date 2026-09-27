@@ -9,7 +9,13 @@ description = "Tail your logs. Catch anomalies. Skip the 2am grep."
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }
-dependencies = []  # zero dependencies by design — see ARCHITECTURE.md
+authors = [{ name = "AmanSg098" }]
+keywords = ["logs", "logging", "anomaly-detection", "monitoring", "cli", "tail"]
+dependencies = []  # zero dependencies by design
+
+[project.urls]
+Homepage = "https://github.com/AmanSg098/logometer"
+Issues = "https://github.com/AmanSg098/logometer/issues"
 
 [project.optional-dependencies]
 pretty = ["rich>=13"]  # optional: nicer styled terminal output. --explain needs no extra install (raw HTTP call).

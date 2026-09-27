@@ -3,13 +3,6 @@ Nicer terminal rendering using `rich`, used automatically when it's
 installed and we're writing to a real terminal. Falls back to the
 plain ANSI formatting in cli.py otherwise — this module is never
 required, only opportunistic.
-
-NOTE: this module is exercised by the fallback-detection path in
-cli.py, but rendering itself could not be visually verified in the
-environment this was built in (no network access to install `rich`).
-The plain-text path is the one that's been thoroughly tested end to
-end — treat this as a reasonable-effort addition, and file an issue
-if the layout looks off in your terminal.
 """
 from __future__ import annotations
 
