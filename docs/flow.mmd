@@ -1,0 +1,36 @@
+flowchart LR
+    subgraph prep ["1 &nbsp; Prepare each line"]
+        direction TB
+        A["Log file or stdin"] --> B{"Matches<br/>#45;#45;ignore?"}
+        B -- yes --> X["Dropped"]
+        B -- no --> C["Classify<br/>ERROR / WARN / INFO / DEBUG"]
+        C --> D["Fingerprint ERROR and WARN lines<br/>ids, numbers, timestamps → #lt;x#gt;"]
+        D --> E["Group lines into windows<br/>by time, or every 50 lines"]
+    end
+
+    subgraph judge ["2 &nbsp; Judge each window"]
+        direction TB
+        F{"Error spike?<br/>at least N std devs<br/>above the baseline"}
+        F -- no --> H["Add error count to baseline<br/>(last 20 windows)"]
+        H --> G{"New shape?<br/>not seen earlier in this run"}
+        F -- yes --> I["ANOMALY"]
+        G -- yes --> I
+        G -- no --> K["ok"]
+    end
+
+    subgraph report ["3 &nbsp; Report"]
+        direction TB
+        L{"Anomaly and<br/>#45;#45;explain set?"}
+        L -- yes --> M["Ask an LLM for the cause<br/>Anthropic, OpenAI or OpenRouter"]
+        M --> N["Print the window<br/>plain, rich or JSON"]
+        L -- no --> N
+    end
+
+    prep --> judge --> report
+
+    classDef anomaly fill:#fde2e2,stroke:#d33,color:#900,font-weight:bold
+    classDef ok fill:#e3f6e3,stroke:#3a3,color:#161
+    classDef dropped fill:#eee,stroke:#999,color:#666
+    class I anomaly
+    class K ok
+    class X dropped

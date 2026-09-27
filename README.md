@@ -190,25 +190,9 @@ The end-of-run summary line is omitted in JSON mode, so every line of output is 
 
 ## How the detection works
 
-```mermaid
-flowchart TD
-    A["Log file or stdin"] --> B{"Matches --ignore?"}
-    B -- yes --> X["Dropped"]
-    B -- no --> C["Classify each line<br/>ERROR / WARN / INFO / DEBUG"]
-    C --> D["Fingerprint ERROR and WARN lines<br/>ids, numbers, timestamps become #lt;x#gt;"]
-    D --> E["Group lines into windows<br/>by time, or every 50 lines"]
-    E --> F{"Error spike?<br/>count at least N std devs<br/>above the baseline"}
-    F -- yes --> I["ANOMALY"]
-    F -- no --> H["Add error count to baseline<br/>(last 20 windows)"]
-    H --> G{"New shape?<br/>not seen earlier in this run"}
-    G -- yes --> I
-    G -- no --> K["ok"]
-    I --> L{"--explain set?"}
-    L -- yes --> M["Send ERROR and WARN lines to an LLM<br/>Anthropic, OpenAI or OpenRouter"]
-    M --> N["Print the window<br/>plain, rich or JSON"]
-    L -- no --> N
-    K --> N
-```
+<!-- Source: docs/flow.mmd. Regenerate after editing it with:
+     npx -p @mermaid-js/mermaid-cli mmdc -i docs/flow.mmd -o docs/flow.png -b white -s 2 -c docs/mermaid-config.json -->
+![How logometer processes a log: prepare each line, judge each window, report](docs/flow.png)
 
 1. **Classify.** Each line is tagged by keyword: ERROR (`error`, `err`, `fatal`, `critical`, `exception`, `traceback`, `panic`), then WARN (`warn`, `warning`), INFO (`info`, `notice`), DEBUG (`debug`, `trace`). First match wins, so a line mentioning both an error and a warning counts as ERROR.
 2. **Fingerprint.** ERROR and WARN lines are reduced to a "shape": UUIDs, hex addresses, timestamps, quoted strings and numbers are replaced with `<x>`, so the same underlying error collapses to one shape regardless of the specific id.
@@ -262,6 +246,7 @@ logometer/
   pretty.py      optional rich-styled output
 tests/           unit and end-to-end tests
 examples/        sample log with an injected error burst
+docs/            flow diagram (Mermaid source + rendered PNG)
 ```
 
 ## Roadmap
