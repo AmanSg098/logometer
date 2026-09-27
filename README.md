@@ -6,8 +6,7 @@
 
 Zero dependencies for the core tool — just Python 3.10+.
 
-<!-- TODO: record a short asciinema/GIF demo and drop it here before publishing.
-     Suggested recording: `logometer tail examples/sample.log --replay` -->
+![logometer flagging an error spike in the sample log, with LLM explanations](https://raw.githubusercontent.com/AmanSg098/logometer/main/docs/demo.png)
 
 ## Install
 
@@ -246,7 +245,7 @@ logometer/
   pretty.py      optional rich-styled output
 tests/           unit and end-to-end tests
 examples/        sample log with an injected error burst
-docs/            flow diagram (Mermaid source + rendered PNG)
+docs/            flow diagram (Mermaid source + PNG), demo screenshot, social preview
 ```
 
 ## Roadmap
