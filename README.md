@@ -192,7 +192,7 @@ The end-of-run summary line is omitted in JSON mode, so every line of output is 
 
 <!-- Source: docs/flow.mmd. Regenerate after editing it with:
      npx -p @mermaid-js/mermaid-cli mmdc -i docs/flow.mmd -o docs/flow.png -b white -s 2 -c docs/mermaid-config.json -->
-![How logometer processes a log: prepare each line, judge each window, report](docs/flow.png)
+![How logometer processes a log: prepare each line, judge each window, report](https://raw.githubusercontent.com/AmanSg098/logometer/main/docs/flow.png)
 
 1. **Classify.** Each line is tagged by keyword: ERROR (`error`, `err`, `fatal`, `critical`, `exception`, `traceback`, `panic`), then WARN (`warn`, `warning`), INFO (`info`, `notice`), DEBUG (`debug`, `trace`). First match wins, so a line mentioning both an error and a warning counts as ERROR.
 2. **Fingerprint.** ERROR and WARN lines are reduced to a "shape": UUIDs, hex addresses, timestamps, quoted strings and numbers are replaced with `<x>`, so the same underlying error collapses to one shape regardless of the specific id.
@@ -262,4 +262,4 @@ Issues and PRs welcome — especially around log-format parsing (every stack log
 
 ## License
 
-MIT — see [LICENSE](LICENSE).
+MIT — see [LICENSE](https://github.com/AmanSg098/logometer/blob/main/LICENSE).
