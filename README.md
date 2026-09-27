@@ -190,6 +190,26 @@ The end-of-run summary line is omitted in JSON mode, so every line of output is 
 
 ## How the detection works
 
+```mermaid
+flowchart TD
+    A["Log file or stdin"] --> B{"Matches --ignore?"}
+    B -- yes --> X["Dropped"]
+    B -- no --> C["Classify each line<br/>ERROR / WARN / INFO / DEBUG"]
+    C --> D["Fingerprint ERROR and WARN lines<br/>ids, numbers, timestamps become #lt;x#gt;"]
+    D --> E["Group lines into windows<br/>by time, or every 50 lines"]
+    E --> F{"Error spike?<br/>count at least N std devs<br/>above the baseline"}
+    F -- yes --> I["ANOMALY"]
+    F -- no --> H["Add error count to baseline<br/>(last 20 windows)"]
+    H --> G{"New shape?<br/>not seen earlier in this run"}
+    G -- yes --> I
+    G -- no --> K["ok"]
+    I --> L{"--explain set?"}
+    L -- yes --> M["Send ERROR and WARN lines to an LLM<br/>Anthropic, OpenAI or OpenRouter"]
+    M --> N["Print the window<br/>plain, rich or JSON"]
+    L -- no --> N
+    K --> N
+```
+
 1. **Classify.** Each line is tagged by keyword: ERROR (`error`, `err`, `fatal`, `critical`, `exception`, `traceback`, `panic`), then WARN (`warn`, `warning`), INFO (`info`, `notice`), DEBUG (`debug`, `trace`). First match wins, so a line mentioning both an error and a warning counts as ERROR.
 2. **Fingerprint.** ERROR and WARN lines are reduced to a "shape": UUIDs, hex addresses, timestamps, quoted strings and numbers are replaced with `<x>`, so the same underlying error collapses to one shape regardless of the specific id.
 3. **Window.** Lines are batched into fixed-size windows — by time if timestamps are parseable, otherwise by a fixed line count.
