@@ -1,6 +1,28 @@
-# logometer
+<p align="center">
+  <img src="https://raw.githubusercontent.com/AmanSg098/logometer/main/docs/banner.png" alt="logometer" width="820">
+</p>
 
-**Tail your logs. Catch anomalies. Skip the 2am grep.**
+<h3 align="center">Tail your logs. Catch anomalies. Skip the 2am grep.</h3>
+
+<p align="center">
+  <a href="https://pypi.org/project/logometer/"><img src="https://img.shields.io/pypi/v/logometer?color=ff5f5f&label=pypi" alt="PyPI version"></a>
+  <a href="https://pypi.org/project/logometer/"><img src="https://img.shields.io/pypi/pyversions/logometer" alt="Python versions"></a>
+  <a href="https://github.com/AmanSg098/logometer/blob/main/LICENSE"><img src="https://img.shields.io/pypi/l/logometer?color=blue" alt="License: MIT"></a>
+  <img src="https://img.shields.io/badge/dependencies-zero-3fb950" alt="Zero dependencies">
+  <img src="https://img.shields.io/badge/LLM-Anthropic%20%C2%B7%20OpenAI%20%C2%B7%20OpenRouter-8957e5" alt="LLM providers: Anthropic, OpenAI, OpenRouter">
+  <a href="https://github.com/AmanSg098/logometer/stargazers"><img src="https://img.shields.io/github/stars/AmanSg098/logometer?style=flat&color=d29922" alt="GitHub stars"></a>
+</p>
+
+<p align="center">
+  <a href="#install">Install</a> ·
+  <a href="#quick-start">Quick start</a> ·
+  <a href="#usage">Usage</a> ·
+  <a href="#--explain">AI explanations</a> ·
+  <a href="#how-the-detection-works">How it works</a> ·
+  <a href="#known-limitations">Limitations</a>
+</p>
+
+---
 
 `logometer` watches a log file (or stdin), buckets lines into time windows, and flags windows that look statistically off — an error spike, or an error type that's never shown up before. It's silent when things are fine. No AI required for the core detection; point it at an LLM with `--explain` if you want a plain-English guess at *why* a window looks weird.
 
@@ -245,7 +267,7 @@ logometer/
   pretty.py      optional rich-styled output
 tests/           unit and end-to-end tests
 examples/        sample log with an injected error burst
-docs/            flow diagram (Mermaid source + PNG), demo screenshot, social preview
+docs/            banner, flow diagram (Mermaid source + PNG), demo screenshot, social preview
 ```
 
 ## Roadmap
